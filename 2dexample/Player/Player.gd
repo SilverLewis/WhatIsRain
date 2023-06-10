@@ -62,7 +62,14 @@ func _physics_process(delta: float) -> void:
 
 func apply_velocity() -> void:
 	if is_jumping:
-		velocity = move_and_slide(velocity, Vector2.UP)
+		print("1: ",velocity.y)
+		var tempVel =  move_and_slide(velocity, Vector2.UP)
+		if(velocity.y<0):
+			velocity.x = tempVel.x;
+		else: 
+			velocity = tempVel;
+		
+		print("2: ",velocity.y)
 	else:
 		velocity = move_and_slide_with_snap(velocity, Vector2(0, 16), Vector2.UP)
 
@@ -103,7 +110,7 @@ func set_direction(hor_direction) -> void:
 
 func jump_logic(_delta: float) -> void:
 	# Reset our jump requirements
-	if is_on_floor():
+	if is_on_floor() && velocity.y<=0:
 		jump_coyote_timer = jump_coyote
 		is_jumping = false
 	if get_input()["just_jump"]:

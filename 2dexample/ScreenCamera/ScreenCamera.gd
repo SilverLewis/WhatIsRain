@@ -7,6 +7,9 @@ export var target : NodePath
 export var align_time : float = 0.2
 export var screen_size := Vector2(1920, 1080)
 
+export var move_screen_percentage : float = 30;
+
+
 onready var Target = get_node_or_null(target)
 onready var Twee = $Tween
 
@@ -17,10 +20,5 @@ func _physics_process(_delta: float) -> void:
 	if not is_instance_valid(Target):
 		return
 	
-	# Actual movement
-	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
-	tween.tween_property(self, "global_position", desired_position(), align_time)
-
-# Calculating the gridnapped position
-func desired_position() -> Vector2:
-	return (Target.global_position / screen_size).floor() * screen_size + screen_size/2
+	self.global_position = Target.global_position
+	
