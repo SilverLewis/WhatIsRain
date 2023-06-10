@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sheesh.mp3-b42d250b21d6ea1f6c8c302eef77982b.mp3str"
+
+[deps]
+
+source_file="res://rainsounds/sheesh.mp3"
+dest_files=[ "res://.import/sheesh.mp3-b42d250b21d6ea1f6c8c302eef77982b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

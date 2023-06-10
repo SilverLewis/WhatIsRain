@@ -5,7 +5,7 @@ export var unclicked: Texture;
 
 var isClicking = false;
 
-func _process(delta):
+func _process(_delta):
 	if(isClicking !=  Input.is_action_pressed("ui_select") ):
 		isClicking = Input.is_action_pressed("ui_select") 
 		if(isClicking):
