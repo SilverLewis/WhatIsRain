@@ -3,7 +3,7 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-export var rumbleInterval = .1
+export var rumbleRandomInterval = Vector2(.5,3)
 
 onready var mouse = get_node("Mouse")
 var curEnabledShrine: String
@@ -34,10 +34,9 @@ func _ready():
 func _process(delta):
 	if(timeLeft>0):
 		timeLeft -= delta
-	
-	if(inRumble&&vibrateStrengthChosen):
-		timeLeft = rumbleInterval+.3
-		Input.start_joy_vibration(0, vibrateStrengthChosen.x, vibrateStrengthChosen.y, rumbleInterval)
+	elif(inRumble&&vibrateStrengthChosen):
+		timeLeft = .5+rand_range(rumbleRandomInterval.x,rumbleRandomInterval.y)
+		Input.start_joy_vibration(0, vibrateStrengthChosen.x, vibrateStrengthChosen.y, .5)
 
 func enableRainShrine(name, requiresMouse):
 	print("Entering memory: ",name)
@@ -146,7 +145,6 @@ func inRumbleLand(body):
 func exitedRumbleLand(body):
 	if(body.name == "Player"):
 		inRumble = false
-
 
 func hasFiveSenses()->bool:
 	return rainSoundChosen&&vibrateStrengthChosen&&colorChosen&&hasSmelt&&hasTasted
