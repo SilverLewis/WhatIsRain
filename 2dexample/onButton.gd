@@ -1,4 +1,4 @@
-extends Label
+extends Node2D
 
 signal onClicked;
 
