@@ -21,7 +21,7 @@ func startRumbling():
 func vibrate():
 	print(currentStrength)
 	Input.start_joy_vibration(0, currentStrength.x, currentStrength.y, rumbleLength)
-	var p:int = ((currentStrength.x+.1)*.35 + currentStrength.y+.1*.65)*100
+	var p:int = ((currentStrength.x+.1)*.35 + (currentStrength.y+.1)*.65)*100
 	percentLabel.text = p as String +"%";
 	
 	if(currentStrength.x<.9):
