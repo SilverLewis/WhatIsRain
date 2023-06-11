@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://SeeingUI.gd" type="Script" id=2]
+
+[node name="SeeingUI" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -214.0
+margin_top = -120.0
+margin_right = 211.0
+margin_bottom = 158.0
+
+[node name="Label" type="Label" parent="."]
+margin_left = -120.0
+margin_top = -219.0
+margin_right = 111.0
+margin_bottom = -205.0
+text = "Press A at the color you think rain is"

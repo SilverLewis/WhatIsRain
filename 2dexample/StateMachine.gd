@@ -23,6 +23,7 @@ func enableRainShrine(name, requiresMouse):
 	if(inMemory):
 		return;
 	enableUINode(name,true);
+	get_node("Player").disable()
 	enableUINode("Player",false,false);
 	curEnabledShrine = name;
 	if(requiresMouse):
@@ -48,23 +49,28 @@ func enableUINode(name, enable, center=true):
 	node.set_process(enable)
 	
 func start_hearing(_id):
-	print("here3")
 	enableRainShrine("hearingUI",true)
 	
 func stop_hearing(chosen):
-	print("here")
 	rainSoundChosen = chosen
 	exitRainShrine();
 	
 func start_vibrating(_id):
-	print("here4")
 	enableRainShrine("VibratingUI",false)
 	get_node("VibratingUI").startRumbling()
 	
 func stop_vibrating(chosen):
-	print("here1")
 	vibrateStrengthChosen = chosen
 	exitRainShrine();
+
+func start_seeing(_id):
+	enableRainShrine("SeeingUI",true)
+	get_node("SeeingUI").start()
+	
+func stop_seeing(chosen):
+	vibrateStrengthChosen = chosen
+	exitRainShrine();
+
 
 func get_viewport_center() -> Vector2:
 	var transform : Transform2D = get_viewport_transform()

@@ -45,9 +45,9 @@ func get_input() -> Dictionary:
 	return {
 		"x": int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")),
 		"y": int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up")),
-		"just_jump": Input.is_action_just_pressed("jump") == true,
-		"jump": Input.is_action_pressed("jump") == true,
-		"released_jump": Input.is_action_just_released("jump") == true
+		"just_jump": Input.is_action_just_pressed("ui_select") == true,
+		"jump": Input.is_action_pressed("ui_select") == true,
+		"released_jump": Input.is_action_just_released("ui_select") == true
 	}
 
 
@@ -64,17 +64,14 @@ func apply_velocity() -> void:
 	if is_jumping:
 		var tempVel =  move_and_slide(velocity, Vector2.UP)
 		if(velocity.y<0):
-			velocity.x = tempVel.x;
-		else: 
-			velocity = tempVel;
-		
+			tempVel = Vector2(tempVel.x,velocity.y);
+		velocity = tempVel;
 	else:
 		velocity = move_and_slide_with_snap(velocity, Vector2(0, 16), Vector2.UP)
 
 
 func x_movement(delta: float) -> void:
 	x_dir = get_input()["x"]
-	
 	# Stop if we're not doing movement inputs.
 	if x_dir == 0: 
 		velocity.x = Vector2(velocity.x, 0).move_toward(Vector2(0,0), deceleration * delta).x
@@ -112,8 +109,10 @@ func set_direction(hor_direction) -> void:
 
 
 func jump_logic(_delta: float) -> void:
+	if(!visible):
+		return;
 	# Reset our jump requirements
-	if is_on_floor() && velocity.y<=0:
+	if is_on_floor() && velocity.y==0:
 		jump_coyote_timer = jump_coyote
 		is_jumping = false
 	if get_input()["just_jump"]:
@@ -170,6 +169,9 @@ func apply_gravity(delta: float) -> void:
 		if(animator.animation!="fall"):
 			animator.animation="fall"
 
+func disable():
+	velocity = Vector2(0,0)
+	is_jumping=false
 
 func timers(delta: float) -> void:
 	# Using timer nodes here would mean unnececary functions and node calls

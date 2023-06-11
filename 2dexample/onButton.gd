@@ -17,7 +17,7 @@ func _on_Area2D_body_exited(_body):
 	sent = false
 	
 func _process(_delta):
-	if(Input.is_action_just_pressed("ui_select") && entered && !sent):
+	if(Input.is_action_just_pressed("ui_accept") && entered && !sent):
 		print("sending")
 		sent=true
 		emit_signal("onClicked",id);
