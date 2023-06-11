@@ -4,7 +4,7 @@
 [ext_resource path="res://Art/UI Panel.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 24, 24 )
+extents = Vector2( 23.5, 24 )
 
 [node name="SelectableButton" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,11 +14,20 @@ z_index = -1
 collision_layer = 256
 collision_mask = 256
 
+[node name="ColorRect" type="ColorRect" parent="Area2D"]
+visible = false
+margin_left = -25.0
+margin_top = -25.0
+margin_right = 25.0
+margin_bottom = 25.0
+color = Color( 0.415686, 0.933333, 0.329412, 1 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
 
 [node name="UiPanel" type="Sprite" parent="Area2D"]
 texture = ExtResource( 2 )
 
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

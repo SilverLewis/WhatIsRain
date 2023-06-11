@@ -4,7 +4,7 @@ var buttonList = [];
 var CustomButton = preload('onButton.gd')
 
 var audio_node = null
-var lastSelected =null;
+var lastSelected =-1;
 
 signal exitMemory
 
@@ -30,10 +30,20 @@ func _ready():
 	for child in get_children():
 		if(child is CustomButton and child.has_signal("onClicked")):
 			child.connect("onClicked",self,"buttonClicked")
+			child.id=ids
+			ids+=1
 		
 func buttonClicked(num):
+	#reset highlighting
+	var i = 0;	
+	for child in get_children():
+		if(child is CustomButton ) && i<sounds.size():
+			child.selected(i==num)
+			i+=1;
+			
+	print(num)
 	if(num<sounds.size()):
-		lastSelected = sounds[num]
+		lastSelected = num
 		audio_node.stream = sounds[num]
 		audio_node.play()
 	else:
@@ -41,8 +51,8 @@ func buttonClicked(num):
 
 func finished():
 	print("here")
-	if(lastSelected != null):
-		emit_signal("exitMemory",lastSelected);
+	if(lastSelected != -1):
+		emit_signal("exitMemory",sounds[lastSelected]);
 
 func test():
 	print("finished");
