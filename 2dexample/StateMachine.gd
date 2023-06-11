@@ -23,6 +23,7 @@ func enableRainShrine(name, requiresMouse):
 	if(inMemory):
 		return;
 	enableUINode(name,true);
+	get_node("Player").disable()
 	enableUINode("Player",false,false);
 	curEnabledShrine = name;
 	if(requiresMouse):
