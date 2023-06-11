@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://hearingChoice.gd" type="Script" id=1]
-[ext_resource path="res://ScreenCamera/ScreenCamera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://CustomButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Fonts/pixel_font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Art/check panel.png" type="Texture" id=5]
+[ext_resource path="res://Art/audio icon.png" type="Texture" id=6]
 
 [node name="Level Node" type="Node2D"]
 z_index = 100
@@ -28,31 +28,49 @@ custom_fonts/font = ExtResource( 4 )
 text = "Initializing The Aural Sensation Of Rain.
 Select From Our Numerous Options Below.
 When You Have Selected The Accurate Sound Of Rain, 
-Click The Green Check"
+Click The Green Check."
 align = 1
 
 [node name="SelectableButton" parent="." instance=ExtResource( 3 )]
-position = Vector2( -257, -29 )
+position = Vector2( -264, -29 )
 scale = Vector2( -2.31412, -2.31412 )
 
+[node name="AudioIcon" type="Sprite" parent="SelectableButton"]
+rotation = 3.14159
+scale = Vector2( 0.432129, 0.432129 )
+texture = ExtResource( 6 )
+
 [node name="SelectableButton3" parent="." instance=ExtResource( 3 )]
-position = Vector2( -101, -29 )
+position = Vector2( -104, -29 )
 rotation = 3.14159
 scale = Vector2( 2.31412, 2.31412 )
+
+[node name="AudioIcon" type="Sprite" parent="SelectableButton3"]
+rotation = 3.14159
+scale = Vector2( 0.432129, 0.432129 )
+texture = ExtResource( 6 )
 
 [node name="Audio_Stream_Player" type="AudioStreamPlayer" parent="."]
 
-[node name="ScreenCamera" parent="." instance=ExtResource( 2 )]
-
 [node name="SelectableButton4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 105, -29 )
+position = Vector2( 104, -29 )
 rotation = 3.14159
 scale = Vector2( 2.31412, 2.31412 )
+
+[node name="AudioIcon" type="Sprite" parent="SelectableButton4"]
+rotation = 3.14159
+scale = Vector2( 0.432129, 0.432129 )
+texture = ExtResource( 6 )
 
 [node name="SelectableButton5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 281, -29 )
+position = Vector2( 271, -29 )
 rotation = 3.14159
 scale = Vector2( 2.31412, 2.31412 )
+
+[node name="AudioIcon" type="Sprite" parent="SelectableButton5"]
+rotation = 3.14159
+scale = Vector2( 0.432129, 0.432129 )
+texture = ExtResource( 6 )
 
 [node name="SelectableButton2" parent="." instance=ExtResource( 3 )]
 position = Vector2( -2, 113 )
