@@ -1,15 +1,28 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://World/World.gd" type="Script" id=1]
 [ext_resource path="res://ScreenCamera/ScreenCamera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://RainMemoryActivator.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Art/braindoor.png" type="Texture" id=4]
 [ext_resource path="res://Platforms/TileMap.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://World/tilepallete.tres" type="TileSet" id=7]
+[ext_resource path="res://Art/braindoor overlay.png" type="Texture" id=8]
 [ext_resource path="res://Art/gradient.png" type="Texture" id=10]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
+
+[node name="Braindoor" type="Sprite" parent="."]
+position = Vector2( -1440, -56 )
+scale = Vector2( 2.5, 2.5 )
+z_index = -1
+texture = ExtResource( 4 )
+
+[node name="Braindoor2" type="Sprite" parent="Braindoor"]
+position = Vector2( 0.00012207, 1.90735e-06 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 8 )
 
 [node name="Taste" parent="." instance=ExtResource( 3 )]
 position = Vector2( 2704, -656 )
@@ -61,7 +74,7 @@ scale = Vector2( 0.125, 0.125 )
 z_index = -2
 tile_set = ExtResource( 7 )
 collision_use_parent = false
-tile_data = PoolIntArray(  )
+tile_data = PoolIntArray( -327633, 59, 0, -327624, 49, 0, -262097, 59, 0, -262088, 49, 0, -196561, 59, 0, -196552, 49, 0, -131025, 59, 0, -131016, 49, 0, -65489, 59, 0, -65480, 49, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( -1497, -20 )
