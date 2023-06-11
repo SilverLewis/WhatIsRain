@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://World/World.gd" type="Script" id=1]
 [ext_resource path="res://ScreenCamera/ScreenCamera.tscn" type="PackedScene" id=2]
@@ -15,6 +15,12 @@
 [ext_resource path="res://hearingUI.tscn" type="PackedScene" id=13]
 [ext_resource path="res://SeeingUI.tscn" type="PackedScene" id=14]
 [ext_resource path="res://StateMachine.gd" type="Script" id=15]
+[ext_resource path="res://Art/hud frame.png" type="Texture" id=16]
+[ext_resource path="res://Art/hud elements.png" type="Texture" id=17]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 17 )
+region = Rect2( 53.1828, 82.6213, 14.8869, 23.1004 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
@@ -123,11 +129,28 @@ zoom = Vector2( 0.5, 0.5 )
 
 [node name="Gradient" type="Sprite" parent="ScreenCamera"]
 modulate = Color( 0.9375, 0.95777, 1, 1 )
-position = Vector2( -2898, -50 )
+position = Vector2( -2912, -55 )
 scale = Vector2( 7.175, 3.99337 )
 z_index = -5
 texture = ExtResource( 10 )
 offset = Vector2( 354.071, 11.9906 )
+
+[node name="HudFrame" type="Sprite" parent="ScreenCamera"]
+scale = Vector2( 5, 5 )
+z_index = 50
+texture = ExtResource( 16 )
+
+[node name="eyeball" type="Sprite" parent="ScreenCamera"]
+position = Vector2( -321, 214 )
+scale = Vector2( 5, 5 )
+z_index = 50
+texture = SubResource( 1 )
+
+[node name="eyeball2" type="Sprite" parent="ScreenCamera"]
+position = Vector2( -74, 214 )
+scale = Vector2( 5, 5 )
+z_index = 50
+texture = SubResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( -1462, -28 )
