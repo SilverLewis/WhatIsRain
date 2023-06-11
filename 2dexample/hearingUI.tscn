@@ -32,7 +32,7 @@ Click The Green Check."
 align = 1
 
 [node name="SelectableButton" parent="." instance=ExtResource( 3 )]
-position = Vector2( -264, -29 )
+position = Vector2( -280, -25 )
 scale = Vector2( -2.31412, -2.31412 )
 
 [node name="AudioIcon" type="Sprite" parent="SelectableButton"]
@@ -41,7 +41,7 @@ scale = Vector2( 0.432129, 0.432129 )
 texture = ExtResource( 6 )
 
 [node name="SelectableButton3" parent="." instance=ExtResource( 3 )]
-position = Vector2( -104, -29 )
+position = Vector2( -110, -25 )
 rotation = 3.14159
 scale = Vector2( 2.31412, 2.31412 )
 
@@ -53,7 +53,7 @@ texture = ExtResource( 6 )
 [node name="Audio_Stream_Player" type="AudioStreamPlayer" parent="."]
 
 [node name="SelectableButton4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 104, -29 )
+position = Vector2( 100, -25 )
 rotation = 3.14159
 scale = Vector2( 2.31412, 2.31412 )
 
@@ -63,7 +63,7 @@ scale = Vector2( 0.432129, 0.432129 )
 texture = ExtResource( 6 )
 
 [node name="SelectableButton5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 271, -29 )
+position = Vector2( 277, -25 )
 rotation = 3.14159
 scale = Vector2( 2.31412, 2.31412 )
 
