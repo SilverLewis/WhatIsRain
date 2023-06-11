@@ -64,10 +64,8 @@ func apply_velocity() -> void:
 	if is_jumping:
 		var tempVel =  move_and_slide(velocity, Vector2.UP)
 		if(velocity.y<0):
-			velocity.x = tempVel.x;
-		else: 
-			velocity = tempVel;
-		
+			tempVel = Vector2(tempVel.x,velocity.y);
+		velocity = tempVel;
 	else:
 		velocity = move_and_slide_with_snap(velocity, Vector2(0, 16), Vector2.UP)
 
@@ -113,7 +111,7 @@ func set_direction(hor_direction) -> void:
 
 func jump_logic(_delta: float) -> void:
 	# Reset our jump requirements
-	if is_on_floor() && velocity.y<=0:
+	if is_on_floor() && velocity.y==0:
 		jump_coyote_timer = jump_coyote
 		is_jumping = false
 	if get_input()["just_jump"]:
