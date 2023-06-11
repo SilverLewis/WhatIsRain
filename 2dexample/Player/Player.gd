@@ -13,6 +13,8 @@ var velocity := Vector2(0,0)
 var face_direction := 1
 var x_dir := 1
 
+var disabled = false;
+
 export var max_speed: float = 560
 export var acceleration: float = 2880
 export var turning_acceleration : float = 9600
@@ -109,7 +111,7 @@ func set_direction(hor_direction) -> void:
 
 
 func jump_logic(_delta: float) -> void:
-	if(!visible):
+	if(disabled):
 		return;
 	# Reset our jump requirements
 	if is_on_floor() && velocity.y==0:
@@ -172,6 +174,10 @@ func apply_gravity(delta: float) -> void:
 func disable():
 	velocity = Vector2(0,0)
 	is_jumping=false
+	disabled=true;
+	
+func enable():
+	disabled=false;
 
 func timers(delta: float) -> void:
 	# Using timer nodes here would mean unnececary functions and node calls

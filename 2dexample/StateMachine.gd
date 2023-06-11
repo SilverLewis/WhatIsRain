@@ -8,14 +8,15 @@ var curEnabledShrine: String
 onready var camera = get_node("../ScreenCamera")
 
 var rainSoundChosen;
-var vibrateStrengthChosen;
+var vibrateStrengthChosen:Vector2;
+var colorChosen:Color;
 
 var inMemory: bool = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	enableUINode("hearingUI",false);
-	enableUINode("Player",true,false);
+	enablePlayer(true);
 	mouse.disable()
 
 func enableRainShrine(name, requiresMouse):
@@ -23,8 +24,7 @@ func enableRainShrine(name, requiresMouse):
 	if(inMemory):
 		return;
 	enableUINode(name,true);
-	get_node("Player").disable()
-	enableUINode("Player",false,false);
+	enablePlayer(false);
 	curEnabledShrine = name;
 	if(requiresMouse):
 		mouse.enable()
@@ -36,7 +36,7 @@ func exitRainShrine():
 		
 	inMemory=false;
 	enableUINode(curEnabledShrine,false);
-	enableUINode("Player",true);
+	enablePlayer(true);
 	curEnabledShrine = "";
 	mouse.disable()
 
@@ -48,7 +48,18 @@ func enableUINode(name, enable, center=true):
 	node.set_physics_process(enable)
 	node.set_process(enable)
 	
+func enablePlayer(enable):
+	var node = get_node("../Player");
+	node.set_physics_process(enable)
+	node.set_process(enable)
+	if(enable):
+		node.enable()
+	else:
+		node.disable();
+	
 func start_hearing(_id):
+	print(_id)
+	print("starting to hear")
 	enableRainShrine("hearingUI",true)
 	
 func stop_hearing(chosen):
@@ -60,15 +71,18 @@ func start_vibrating(_id):
 	get_node("VibratingUI").startRumbling()
 	
 func stop_vibrating(chosen):
+	print("starting to feel")
 	vibrateStrengthChosen = chosen
 	exitRainShrine();
 
 func start_seeing(_id):
+	print(_id)
+	print("starting to see")
 	enableRainShrine("SeeingUI",true)
 	get_node("SeeingUI").start()
 	
 func stop_seeing(chosen):
-	vibrateStrengthChosen = chosen
+	colorChosen = chosen
 	exitRainShrine();
 
 

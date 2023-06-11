@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="MOVEMENT 2"
-run/main_scene="res://World/SilversWold.tscn"
+run/main_scene="res://World/The Real World.tscn"
 config/icon="res://Art/icon.png"
 config/windows_native_icon="res://icon.ico"
 

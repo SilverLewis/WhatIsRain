@@ -3,6 +3,7 @@
 [ext_resource path="res://SeeingUI.gd" type="Script" id=2]
 
 [node name="SeeingUI" type="Node2D"]
+z_index = 100
 script = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]

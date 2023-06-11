@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://World/World.gd" type="Script" id=1]
 [ext_resource path="res://ScreenCamera/ScreenCamera.tscn" type="PackedScene" id=2]
@@ -10,9 +10,31 @@
 [ext_resource path="res://Art/braindoor overlay.png" type="Texture" id=8]
 [ext_resource path="res://Player/rain_particles.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Art/gradient.png" type="Texture" id=10]
+[ext_resource path="res://Mouse.tscn" type="PackedScene" id=11]
+[ext_resource path="res://VibratingUI.tscn" type="PackedScene" id=12]
+[ext_resource path="res://hearingUI.tscn" type="PackedScene" id=13]
+[ext_resource path="res://SeeingUI.tscn" type="PackedScene" id=14]
+[ext_resource path="res://StateMachine.gd" type="Script" id=15]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource( 15 )
+
+[node name="Mouse" parent="StateMachine" instance=ExtResource( 11 )]
+position = Vector2( 1246, 63 )
+
+[node name="SeeingUI" parent="StateMachine" instance=ExtResource( 14 )]
+visible = false
+
+[node name="VibratingUI" parent="StateMachine" instance=ExtResource( 12 )]
+visible = false
+position = Vector2( -4978, 37 )
+
+[node name="hearingUI" parent="StateMachine" instance=ExtResource( 13 )]
+visible = false
+position = Vector2( -47, 118 )
 
 [node name="Braindoor" type="Sprite" parent="."]
 position = Vector2( -1440, -56 )
@@ -25,21 +47,25 @@ position = Vector2( 0.00012207, 1.90735e-06 )
 texture = ExtResource( 8 )
 
 [node name="Taste" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 2704, -656 )
 
 [node name="Smell" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( -2496, -856 )
 
 [node name="Rumble" parent="." instance=ExtResource( 3 )]
-position = Vector2( -1456, 704 )
+position = Vector2( -1551, 837 )
 
 [node name="Hearing" parent="." instance=ExtResource( 3 )]
 position = Vector2( -240, 1184 )
+id = 1
 
 [node name="Vision" parent="." instance=ExtResource( 3 )]
-position = Vector2( -72, -1064 )
+position = Vector2( -76, -1066 )
 
 [node name="Tilemaps" type="Node2D" parent="."]
+position = Vector2( 1, 0 )
 scale = Vector2( 20, 20 )
 
 [node name="foreground2" parent="Tilemaps" instance=ExtResource( 5 )]
@@ -744,3 +770,10 @@ lifetime = 19.35
 position = Vector2( 943, -376 )
 amount = 118
 lifetime = 19.35
+
+[connection signal="colorChosen" from="StateMachine/SeeingUI" to="StateMachine" method="stop_seeing"]
+[connection signal="vibrateChosen" from="StateMachine/VibratingUI" to="StateMachine" method="stop_vibrating"]
+[connection signal="exitMemory" from="StateMachine/hearingUI" to="StateMachine" method="stop_hearing"]
+[connection signal="onClicked" from="Rumble" to="StateMachine" method="start_vibrating"]
+[connection signal="onClicked" from="Hearing" to="StateMachine" method="start_hearing"]
+[connection signal="onClicked" from="Vision" to="StateMachine" method="start_seeing"]
