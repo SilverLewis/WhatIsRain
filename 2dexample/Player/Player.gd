@@ -6,8 +6,14 @@ extends KinematicBody2D
 # Beyond coyote time and a jump buffer I go through all the things listed in the following video:
 # https://www.youtube.com/watch?v=2S3g8CgBG1g
 # Except for separate air and ground acceleration, as I don't think it's necessary.
+var tilemap1
+var tilemap2
 
-
+onready var tileAudio=get_node("TileStep")
+onready var metalAudio=get_node("MetalStep")
+onready var sandAudio=get_node("SandStep")
+export var stepFreq: float = 0.5
+var stepTimer: float = 0;
 # BASIC MOVEMENT VARAIABLES ---------------- #
 var velocity := Vector2(0,0)
 var face_direction := 1
@@ -77,13 +83,13 @@ func x_movement(delta: float) -> void:
 	# Stop if we're not doing movement inputs.
 	if x_dir == 0: 
 		velocity.x = Vector2(velocity.x, 0).move_toward(Vector2(0,0), deceleration * delta).x
-		if(!is_jumping and animator.animation!="idle"):
+		if(!is_jumping and velocity.y==0 and animator.animation!="idle"):
 			animator.animation="idle"
 		return
 	
 	# If we are doing movement inputs and above max speed, don't accelerate nor decelerate
 	# Except if we are turning
-	if(!is_jumping and animator.animation!="walk"):
+	if(!is_jumping and velocity.y==0 and animator.animation!="walk"):
 			animator.animation="walk"
 	# (This keeps our momentum gained from outside or slopes)
 	if abs(velocity.x) >= max_speed and sign(velocity.x) == x_dir:
@@ -116,6 +122,9 @@ func jump_logic(_delta: float) -> void:
 	# Reset our jump requirements
 	if is_on_floor() && velocity.y==0:
 		jump_coyote_timer = jump_coyote
+		if(is_jumping):
+			sandAudio.pitch_scale=rand_range(0.8,1.2)
+			sandAudio.play();
 		is_jumping = false
 	if get_input()["just_jump"]:
 		jump_buffer_timer = jump_buffer
@@ -167,7 +176,7 @@ func apply_gravity(delta: float) -> void:
 		applied_gravity *= jump_hang_gravity_mult
 	
 	velocity.y += applied_gravity
-	if(velocity.y>0):
+	if(velocity.y>0.1):
 		if(animator.animation!="fall"):
 			animator.animation="fall"
 
@@ -184,4 +193,12 @@ func timers(delta: float) -> void:
 	# This way everything is contained in just 1 script with no node requirements
 	jump_coyote_timer -= delta
 	jump_buffer_timer -= delta
+	if(is_on_floor() and animator.animation=="walk"):
+		stepTimer += delta
+		if(stepTimer > stepFreq ):
+			stepTimer=0.0
+			
+			sandAudio.pitch_scale=rand_range(0.8,1.2)
+			sandAudio.play();
+				
 
