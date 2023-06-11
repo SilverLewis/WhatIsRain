@@ -62,6 +62,7 @@ func enablePlayer(enable):
 func start_hearing(_id):
 	print("starting to hear")
 	enableRainShrine("hearingUI",true)
+	get_node("hearingUI").start()
 	
 func stop_hearing(chosen):
 	rainSoundChosen = chosen

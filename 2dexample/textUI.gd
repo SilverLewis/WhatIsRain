@@ -2,12 +2,16 @@ extends Node2D
 
 signal theyAreBack;
 
-var sniffing: bool = false;
+var active: bool = false;
 
 func start():
-	sniffing = true;
+	active = true;
+	print("active")
 
-func _process(delta):
-	if(sniffing&&Input.is_action_just_pressed("ui_accept")):
-		sniffing = false;
+func done(id):
+	print("here")
+	if(active):
+		print("done")
+		active = false;
 		emit_signal("theyAreBack")
+

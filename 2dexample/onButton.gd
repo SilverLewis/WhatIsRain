@@ -24,7 +24,7 @@ func _process(_delta):
 		if(node&&showClicked):
 			node.modulate = Color(.5,.5,.5)
 		if(!sent):
-			print("sending")
+			print("sending ", name)
 			sent=true
 			emit_signal("onClicked",id);
 	elif(node&&showClicked&&!Input.is_action_pressed("ui_accept")):

@@ -2,7 +2,7 @@ extends Node2D
 
 var buttonList = [];
 var CustomButton = preload('onButton.gd')
-
+var hearing:bool = false;
 var audio_node = null
 var lastSelected =-1;
 
@@ -34,6 +34,8 @@ func _ready():
 			ids+=1
 		
 func buttonClicked(num):
+	if(!hearing):
+		return;
 	#reset highlighting
 	var i = 0;	
 	for child in get_children():
@@ -53,9 +55,13 @@ func finished():
 	print("here")
 	if(lastSelected != -1):
 		emit_signal("exitMemory",sounds[lastSelected]);
+		hearing =false
 
 func test():
 	print("finished");
+		
+func start():
+	hearing = true;
 		
 func destroy_self():
 	audio_node.stop()

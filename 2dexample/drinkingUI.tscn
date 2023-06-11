@@ -47,11 +47,13 @@ When you have tasted the true flavour of rain, click the green check."
 align = 1
 autowrap = true
 
-[node name="SelectableButton2" parent="." instance=ExtResource( 5 )]
+[node name="drinkingButton" parent="." instance=ExtResource( 5 )]
 position = Vector2( 357, 113 )
 rotation = 3.14159
 scale = Vector2( 2.31412, 2.31412 )
 
-[node name="CheckPanel" type="Sprite" parent="SelectableButton2"]
+[node name="CheckPanel" type="Sprite" parent="drinkingButton"]
 rotation = 3.14159
 texture = ExtResource( 3 )
+
+[connection signal="onClicked" from="drinkingButton" to="." method="done"]
