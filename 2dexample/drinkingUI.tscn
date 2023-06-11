@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://textUI.gd" type="Script" id=1]
+
+[node name="DrinkingUI" type="Node2D"]
+z_index = 100
+script = ExtResource( 1 )
+
+[node name="label" type="Label" parent="."]
+margin_left = -321.0
+margin_top = -33.0
+margin_right = 344.0
+margin_bottom = 21.0
+text = "Indulge in the sensory delight of drinking water. Discover its nuanced flavors and elevate this simple act to a moment of pure enjoyment. Embark on a refreshing journey of taste and savor the experience."
+align = 1
+autowrap = true

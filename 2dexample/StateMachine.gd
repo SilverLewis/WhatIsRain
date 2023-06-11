@@ -10,6 +10,8 @@ onready var camera = get_node("../ScreenCamera")
 var rainSoundChosen;
 var vibrateStrengthChosen:Vector2;
 var colorChosen:Color;
+var hasSmelt = false;
+var hasTasted= false;
 
 var inMemory: bool = false;
 
@@ -58,7 +60,6 @@ func enablePlayer(enable):
 		node.disable();
 	
 func start_hearing(_id):
-	print(_id)
 	print("starting to hear")
 	enableRainShrine("hearingUI",true)
 	
@@ -76,7 +77,6 @@ func stop_vibrating(chosen):
 	exitRainShrine();
 
 func start_seeing(_id):
-	print(_id)
 	print("starting to see")
 	enableRainShrine("SeeingUI",true)
 	get_node("SeeingUI").start()
@@ -85,9 +85,30 @@ func stop_seeing(chosen):
 	colorChosen = chosen
 	exitRainShrine();
 
+func start_drinking(_id):
+	print("starting to drink")
+	enableRainShrine("DrinkingUI",true)
+	get_node("DrinkingUI").start()
+	
+func stop_drinking():
+	hasTasted = true
+	exitRainShrine();
+	
+func start_smelling(_id):
+	print("starting to smell")
+	enableRainShrine("sniffingUI",true)
+	get_node("sniffingUI").start()
+	
+func stop_smelling():
+	hasSmelt = true
+	exitRainShrine();
+
 
 func get_viewport_center() -> Vector2:
 	var transform : Transform2D = get_viewport_transform()
 	var scale : Vector2 = transform.get_scale()
 	return -transform.origin / scale + get_viewport_rect().size / scale / 2
 
+
+func hasFiveSenses()->bool:
+	return rainSoundChosen&&vibrateStrengthChosen&&colorChosen&&hasSmelt&&hasTasted
