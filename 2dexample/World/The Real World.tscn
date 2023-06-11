@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://World/World.gd" type="Script" id=1]
 [ext_resource path="res://ScreenCamera/ScreenCamera.tscn" type="PackedScene" id=2]
@@ -15,12 +15,8 @@
 [ext_resource path="res://hearingUI.tscn" type="PackedScene" id=13]
 [ext_resource path="res://SeeingUI.tscn" type="PackedScene" id=14]
 [ext_resource path="res://StateMachine.gd" type="Script" id=15]
-[ext_resource path="res://Art/hud frame.png" type="Texture" id=16]
-[ext_resource path="res://Art/hud elements.png" type="Texture" id=17]
-
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 17 )
-region = Rect2( 53.1828, 82.6213, 14.8869, 23.1004 )
+[ext_resource path="res://SniffingUI.tscn" type="PackedScene" id=16]
+[ext_resource path="res://drinkingUI.tscn" type="PackedScene" id=17]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
@@ -42,6 +38,12 @@ position = Vector2( -4978, 37 )
 visible = false
 position = Vector2( -47, 118 )
 
+[node name="DrinkingUI" parent="StateMachine" instance=ExtResource( 17 )]
+visible = false
+
+[node name="sniffingUI" parent="StateMachine" instance=ExtResource( 16 )]
+visible = false
+
 [node name="Braindoor" type="Sprite" parent="."]
 position = Vector2( -1440, -56 )
 scale = Vector2( 2.5, 2.5 )
@@ -53,15 +55,13 @@ position = Vector2( 0.00012207, 1.90735e-06 )
 texture = ExtResource( 8 )
 
 [node name="Taste" parent="." instance=ExtResource( 3 )]
-visible = false
-position = Vector2( 2704, -656 )
+position = Vector2( 2723, -665 )
 
 [node name="Smell" parent="." instance=ExtResource( 3 )]
-visible = false
-position = Vector2( -2496, -856 )
+position = Vector2( -2502, -855 )
 
 [node name="Rumble" parent="." instance=ExtResource( 3 )]
-position = Vector2( -1551, 837 )
+position = Vector2( -1397, 703 )
 
 [node name="Hearing" parent="." instance=ExtResource( 3 )]
 position = Vector2( -240, 1184 )
@@ -129,28 +129,11 @@ zoom = Vector2( 0.5, 0.5 )
 
 [node name="Gradient" type="Sprite" parent="ScreenCamera"]
 modulate = Color( 0.9375, 0.95777, 1, 1 )
-position = Vector2( -2912, -55 )
+position = Vector2( -2898, -50 )
 scale = Vector2( 7.175, 3.99337 )
 z_index = -5
 texture = ExtResource( 10 )
 offset = Vector2( 354.071, 11.9906 )
-
-[node name="HudFrame" type="Sprite" parent="ScreenCamera"]
-scale = Vector2( 5, 5 )
-z_index = 50
-texture = ExtResource( 16 )
-
-[node name="eyeball" type="Sprite" parent="ScreenCamera"]
-position = Vector2( -321, 214 )
-scale = Vector2( 5, 5 )
-z_index = 50
-texture = SubResource( 1 )
-
-[node name="eyeball2" type="Sprite" parent="ScreenCamera"]
-position = Vector2( -74, 214 )
-scale = Vector2( 5, 5 )
-z_index = 50
-texture = SubResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( -1462, -28 )
@@ -797,6 +780,10 @@ lifetime = 19.35
 [connection signal="colorChosen" from="StateMachine/SeeingUI" to="StateMachine" method="stop_seeing"]
 [connection signal="vibrateChosen" from="StateMachine/VibratingUI" to="StateMachine" method="stop_vibrating"]
 [connection signal="exitMemory" from="StateMachine/hearingUI" to="StateMachine" method="stop_hearing"]
+[connection signal="theyAreBack" from="StateMachine/DrinkingUI" to="StateMachine" method="stop_drinking"]
+[connection signal="theyAreBack" from="StateMachine/sniffingUI" to="StateMachine" method="stop_smelling"]
+[connection signal="onClicked" from="Taste" to="StateMachine" method="start_drinking"]
+[connection signal="onClicked" from="Smell" to="StateMachine" method="start_smelling"]
 [connection signal="onClicked" from="Rumble" to="StateMachine" method="start_vibrating"]
 [connection signal="onClicked" from="Hearing" to="StateMachine" method="start_hearing"]
 [connection signal="onClicked" from="Vision" to="StateMachine" method="start_seeing"]
