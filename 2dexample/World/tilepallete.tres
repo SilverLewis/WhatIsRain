@@ -147,7 +147,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 points = PoolVector2Array( 0, 0.160019, 45, 0, 45, 48, 0, 48 )
 
 [sub_resource type="ConvexPolygonShape2D" id=51]
-points = PoolVector2Array( 28.6875, 48, 2.1875, 48, 2.25, 0, 28.875, 0.0625 )
+points = PoolVector2Array( 32, 48, 0, 48, 0, 0, 32, 0 )
 
 [resource]
 0/name = "tilemap.png 0"
@@ -987,11 +987,11 @@ points = PoolVector2Array( 28.6875, 48, 2.1875, 48, 2.25, 0, 28.875, 0.0625 )
 46/shape_offset = Vector2( 0, 0 )
 46/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 46/shape = SubResource( 53 )
-46/shape_one_way = false
+46/shape_one_way = true
 46/shape_one_way_margin = 1.0
 46/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
+"one_way": true,
 "one_way_margin": 1.0,
 "shape": SubResource( 53 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
