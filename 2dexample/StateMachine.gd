@@ -4,13 +4,14 @@ extends Node2D
 # var a = 2
 # var b = "text"
 export var rumbleRandomInterval = Vector2(.5,3)
+export var rainURL:String = "https://www.youtube.com/watch?v=42M3esYyHdw&ab_channel=TheRelaxedGuy"
 
 onready var mouse = get_node("Mouse")
 var curEnabledShrine: String
 onready var camera = get_node("../ScreenCamera")
 onready var particalHolder = get_node("../RainParticles");
 onready var speakerHolder = get_node("../Speakers");
-onready var endDoor = get_node("../Braindoor");
+onready var door = get_node("../Brain")
 onready var startNoise = get_node("startNoise");
 onready var endNoise = get_node("endNoise");
 var inRumble: bool = false;
@@ -34,6 +35,7 @@ func _ready():
 	enableUINode("hearingUI",false);
 	enablePlayer(true);
 	mouse.disable()
+	activateEndDoor();
 
 func _process(delta):
 	if(timeLeft>0):
@@ -68,7 +70,7 @@ func enableUINode(name, enable, center=true):
 	node.visible = enable;
 	if(center):
 		node.position = get_viewport_center();
-	node.set_physics_process(enable)
+	#node.set_physics_process(enable)
 	node.set_process(enable)
 	
 func enablePlayer(enable):
@@ -162,6 +164,14 @@ func stop_smelling():
 		activateEndDoor()
 	exitRainShrine();
 
+func start_ending(_id):
+	enableRainShrine("EndGameUI",true)
+	get_node("EndGameUI").start()
+	
+func stop_ending():
+	OS.shell_open(rainURL);
+	exitRainShrine();
+	endNoise.play()
 
 func get_viewport_center() -> Vector2:
 	var transform : Transform2D = get_viewport_transform()
@@ -180,7 +190,8 @@ func exitedRumbleLand(body):
 func activateEndDoor():
 	if(hasFiveSenses()):
 		camera.get_node("brain").visible=true
-		endDoor.get_node("Braindoor2").visible=false
+		door.get_node("Braindoor/Braindoor2").visible=false
+
 
 func hasFiveSenses()->bool:
 	return rainSoundChosen&&vibrateStrengthChosen&&colorChosen&&hasSmelt&&hasTasted

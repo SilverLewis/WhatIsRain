@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://textUI.gd" type="Script" id=1]
+[ext_resource path="res://Art/check panel.png" type="Texture" id=3]
+[ext_resource path="res://Fonts/pixel_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://CustomButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Art/UI Panel.png" type="Texture" id=6]
+
+[node name="EndGameUI" type="Node2D"]
+z_index = 100
+script = ExtResource( 1 )
+
+[node name="overlay" type="ColorRect" parent="."]
+margin_left = -1427.0
+margin_top = -1036.0
+margin_right = 1561.0
+margin_bottom = 696.0
+color = Color( 0, 0, 0, 0.498039 )
+
+[node name="UiPanel" type="Sprite" parent="."]
+position = Vector2( 6, -4 )
+scale = Vector2( 6.2, 6.2 )
+texture = ExtResource( 6 )
+
+[node name="label" type="Label" parent="."]
+margin_left = -299.0
+margin_top = -224.0
+margin_right = 366.0
+margin_bottom = 39.0
+rect_scale = Vector2( 0.88, 0.88 )
+custom_fonts/font = ExtResource( 4 )
+text = "In Order To Experience The Smell Of Rain, Follow These Instructions Carefully:
+"
+align = 1
+autowrap = true
+
+[node name="label2" type="Label" parent="."]
+margin_left = -128.0
+margin_top = -134.0
+margin_right = 327.0
+margin_bottom = 281.0
+rect_scale = Vector2( 0.592858, 0.592858 )
+custom_colors/font_color = Color( 0.34902, 0.109804, 0.109804, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "
+Procure a small amount of soil from a local greenhouse and place it in a bowl. Then gently pour a small amount of water over top. Waft the air above the bowl towards your face, and breathe in deeply.
+When you have smelled the true scent of rain, click the green check."
+align = 1
+autowrap = true
+
+[node name="SelectableButton2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 357, 113 )
+rotation = 3.14159
+scale = Vector2( 2.31412, 2.31412 )
+
+[node name="CheckPanel" type="Sprite" parent="SelectableButton2"]
+rotation = 3.14159
+texture = ExtResource( 3 )
+
+[connection signal="onClicked" from="SelectableButton2" to="." method="done"]

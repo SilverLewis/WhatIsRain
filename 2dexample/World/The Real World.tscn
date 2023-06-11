@@ -3,11 +3,9 @@
 [ext_resource path="res://World/World.gd" type="Script" id=1]
 [ext_resource path="res://ScreenCamera/ScreenCamera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://RainMemoryActivator.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Art/braindoor.png" type="Texture" id=4]
 [ext_resource path="res://Platforms/TileMap.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://World/tilepallete.tres" type="TileSet" id=7]
-[ext_resource path="res://Art/braindoor overlay.png" type="Texture" id=8]
 [ext_resource path="res://Player/rain_particles.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Art/gradient.png" type="Texture" id=10]
 [ext_resource path="res://Mouse.tscn" type="PackedScene" id=11]
@@ -21,6 +19,8 @@
 [ext_resource path="res://drinkingUI.tscn" type="PackedScene" id=19]
 [ext_resource path="res://otheraudio/sense_achieve.ogg" type="AudioStream" id=20]
 [ext_resource path="res://otheraudio/windloop.ogg" type="AudioStream" id=21]
+[ext_resource path="res://EndGameUI.tscn" type="PackedScene" id=22]
+[ext_resource path="res://door.tscn" type="PackedScene" id=23]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 150, 652.75 )
@@ -69,15 +69,12 @@ stream = ExtResource( 17 )
 [node name="endNoise" type="AudioStreamPlayer" parent="StateMachine"]
 stream = ExtResource( 20 )
 
-[node name="Braindoor" type="Sprite" parent="."]
-position = Vector2( -1440, -56 )
-scale = Vector2( 2.5, 2.5 )
-z_index = -1
-texture = ExtResource( 4 )
+[node name="EndGameUI" parent="StateMachine" instance=ExtResource( 22 )]
+visible = false
 
-[node name="Braindoor2" type="Sprite" parent="Braindoor"]
-position = Vector2( 0.00012207, 1.90735e-06 )
-texture = ExtResource( 8 )
+[node name="Brain" parent="." instance=ExtResource( 23 )]
+position = Vector2( -1439, -72 )
+scale = Vector2( 1.25, 1.25 )
 
 [node name="Taste" parent="." instance=ExtResource( 3 )]
 position = Vector2( 2713, -654 )
@@ -868,6 +865,8 @@ autoplay = true
 [connection signal="exitMemory" from="StateMachine/hearingUI" to="StateMachine" method="stop_hearing"]
 [connection signal="theyAreBack" from="StateMachine/DrinkingUI" to="StateMachine" method="stop_drinking"]
 [connection signal="theyAreBack" from="StateMachine/sniffingUI" to="StateMachine" method="stop_smelling"]
+[connection signal="theyAreBack" from="StateMachine/EndGameUI" to="StateMachine" method="stop_ending"]
+[connection signal="onClicked" from="Brain" to="StateMachine" method="start_ending"]
 [connection signal="onClicked" from="Taste" to="StateMachine" method="start_drinking"]
 [connection signal="onClicked" from="Smell" to="StateMachine" method="start_smelling"]
 [connection signal="onClicked" from="Rumble" to="StateMachine" method="start_vibrating"]
