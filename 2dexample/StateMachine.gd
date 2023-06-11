@@ -10,7 +10,9 @@ var curEnabledShrine: String
 onready var camera = get_node("../ScreenCamera")
 onready var particalHolder = get_node("../RainParticles");
 onready var speakerHolder = get_node("../Speakers");
-
+onready var endDoor = get_node("../Braindoor");
+onready var startNoise = get_node("startNoise");
+onready var endNoise = get_node("endNoise");
 var inRumble: bool = false;
 var timeLeft:float  = 0;
 
@@ -19,7 +21,9 @@ var vibrateStrengthChosen:Vector2;
 var colorChosen:Color;
 var hasSmelt = false;
 var hasTasted= false;
-
+var hasSeen = false;
+var hasVibed = false;
+var hasHeard = false;
 
 
 
@@ -89,20 +93,32 @@ func stop_hearing(chosen : String):
 			var audio_node = child as AudioStreamPlayer2D
 			audio_node.stream = rainSoundChosen
 			audio_node.play()
+	if(!hasHeard):
+		hasHeard=true		
+		camera.get_node("ear/X").visible=true
+		endNoise.play()
+		activateEndDoor()
 	
 func start_vibrating(_id):
 	enableRainShrine("VibratingUI",false)
 	get_node("VibratingUI").startRumbling()
+	startNoise.play()
 	
 func stop_vibrating(chosen):
 	print("starting to feel")
 	vibrateStrengthChosen = chosen
 	exitRainShrine();
+	if(!hasVibed):
+		hasVibed=true
+		camera.get_node("hand/X").visible=true
+		endNoise.play()
+		activateEndDoor()
 
 func start_seeing(_id):
 	print("starting to see")
 	enableRainShrine("SeeingUI",true)
 	get_node("SeeingUI").start()
+	startNoise.play()
 	
 func stop_seeing(chosen):
 	colorChosen = chosen
@@ -110,25 +126,40 @@ func stop_seeing(chosen):
 		if(child is Particles2D):
 			var partMat = child.process_material as ParticlesMaterial
 			partMat.color = chosen;
-	
+	if(!hasSeen):
+		hasSeen=true
+		camera.get_node("eyeball/X").visible=true
+		endNoise.play()
+		activateEndDoor()
 	exitRainShrine();
 
 func start_drinking(_id):
 	print("starting to drink")
 	enableRainShrine("DrinkingUI",true)
 	get_node("DrinkingUI").start()
+	startNoise.play()
 	
 func stop_drinking():
-	hasTasted = true
+	if(!hasTasted):
+		hasTasted = true
+		camera.get_node("tongue/X").visible=true
+		endNoise.play()
+		activateEndDoor()
+		
 	exitRainShrine();
 	
 func start_smelling(_id):
 	print("starting to smell")
 	enableRainShrine("sniffingUI",true)
 	get_node("sniffingUI").start()
+	startNoise.play()
 	
 func stop_smelling():
-	hasSmelt = true
+	if(!hasSmelt):
+		hasSmelt = true
+		camera.get_node("nose/X").visible=true
+		endNoise.play()
+		activateEndDoor()
 	exitRainShrine();
 
 
@@ -145,6 +176,11 @@ func inRumbleLand(body):
 func exitedRumbleLand(body):
 	if(body.name == "Player"):
 		inRumble = false
+
+func activateEndDoor():
+	if(hasFiveSenses()):
+		camera.get_node("brain").visible=true
+		endDoor.get_node("Braindoor2").visible=false
 
 func hasFiveSenses()->bool:
 	return rainSoundChosen&&vibrateStrengthChosen&&colorChosen&&hasSmelt&&hasTasted
