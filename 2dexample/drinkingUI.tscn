@@ -1,16 +1,57 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://textUI.gd" type="Script" id=1]
+[ext_resource path="res://Art/UI Panel.png" type="Texture" id=2]
+[ext_resource path="res://Art/check panel.png" type="Texture" id=3]
+[ext_resource path="res://Fonts/pixel_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://CustomButton.tscn" type="PackedScene" id=5]
 
 [node name="DrinkingUI" type="Node2D"]
 z_index = 100
 script = ExtResource( 1 )
 
-[node name="label" type="Label" parent="."]
-margin_left = -321.0
-margin_top = -33.0
-margin_right = 344.0
-margin_bottom = 21.0
-text = "Indulge in the sensory delight of drinking water. Discover its nuanced flavors and elevate this simple act to a moment of pure enjoyment. Embark on a refreshing journey of taste and savor the experience."
+[node name="overlay" type="ColorRect" parent="."]
+margin_left = -1427.0
+margin_top = -1036.0
+margin_right = 1561.0
+margin_bottom = 696.0
+color = Color( 0, 0, 0, 0.498039 )
+
+[node name="UiPanel" type="Sprite" parent="."]
+position = Vector2( 6, -4 )
+scale = Vector2( 6.2, 6.2 )
+texture = ExtResource( 2 )
+
+[node name="label2" type="Label" parent="."]
+margin_left = -299.0
+margin_top = -224.0
+margin_right = 366.0
+margin_bottom = 39.0
+rect_scale = Vector2( 0.88, 0.88 )
+custom_fonts/font = ExtResource( 4 )
+text = "In Order To Experience The Taste Of Rain, Follow These Instructions Carefully:
+"
 align = 1
 autowrap = true
+
+[node name="label3" type="Label" parent="."]
+margin_left = -130.0
+margin_top = -138.0
+margin_right = 325.0
+margin_bottom = 315.0
+rect_scale = Vector2( 0.592858, 0.592858 )
+custom_colors/font_color = Color( 0.34902, 0.109804, 0.109804, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "Fill a small, open topped container with cool water, and hold it as high above your head as you can. Stick your tongue out, and tip the container just enough to get a few drops of water falling at a time. Try to catch some of these drops on your tongue.
+When you have tasted the true flavour of rain, click the green check."
+align = 1
+autowrap = true
+
+[node name="SelectableButton2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 357, 113 )
+rotation = 3.14159
+scale = Vector2( 2.31412, 2.31412 )
+
+[node name="CheckPanel" type="Sprite" parent="SelectableButton2"]
+rotation = 3.14159
+texture = ExtResource( 3 )
