@@ -4,9 +4,9 @@ var buttonList = [];
 var CustomButton = preload('onButton.gd')
 
 var audio_node = null
-var lastSelected = -1;
+var lastSelected =null;
 
-signal rainSound
+signal exitMemory
 
 var sounds = []
 
@@ -33,15 +33,15 @@ func _ready():
 		
 func buttonClicked(num):
 	if(num<sounds.size()):
-		lastSelected = num
+		lastSelected = sounds[num]
 		audio_node.stream = sounds[num]
 		audio_node.play()
 	else:
 		finished();
 
 func finished():
-	if(lastSelected != -1):
-		emit_signal("rainSound",lastSelected);
+	if(lastSelected != null):
+		emit_signal("exitMemory",lastSelected);
 
 func test():
 	print("finished");
@@ -49,4 +49,3 @@ func test():
 func destroy_self():
 	audio_node.stop()
 	queue_free()
-

@@ -1,6 +1,8 @@
 extends Node2D
 
 export var maxSpeed: float = 8;
+export var zoom:= Vector2(.5, .5)
+
 var enabled: bool = true;
 var xMultiplier: float;
 
@@ -24,8 +26,8 @@ func _process(_delta):
 	var size = get_viewport_rect().size;
 	
 	var center = get_viewport_center();
-	var deltaX = get_viewport_rect().size.x/2;
-	var deltaY = get_viewport_rect().size.y/2;
+	var deltaX = (get_viewport_rect().size.x/2)*zoom.y;
+	var deltaY = (get_viewport_rect().size.y/2)*zoom.y;
 	
 	self.position.x = clamp(self.position.x, center.x-deltaX, center.x+deltaX);
 	self.position.y = clamp(self.position.y, center.y-deltaY, center.y+deltaY);

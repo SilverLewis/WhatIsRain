@@ -62,14 +62,12 @@ func _physics_process(delta: float) -> void:
 
 func apply_velocity() -> void:
 	if is_jumping:
-		print("1: ",velocity.y)
 		var tempVel =  move_and_slide(velocity, Vector2.UP)
 		if(velocity.y<0):
 			velocity.x = tempVel.x;
 		else: 
 			velocity = tempVel;
 		
-		print("2: ",velocity.y)
 	else:
 		velocity = move_and_slide_with_snap(velocity, Vector2(0, 16), Vector2.UP)
 
