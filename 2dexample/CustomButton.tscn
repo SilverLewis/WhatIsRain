@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://onButton.gd" type="Script" id=1]
+[ext_resource path="res://Art/UI Panel.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 26.6667, 9.16667 )
+extents = Vector2( 24, 24 )
 
 [node name="SelectableButton" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,15 +15,10 @@ collision_layer = 256
 collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 24.6667, 7.16667 )
 shape = SubResource( 1 )
 
-[node name="ColorRect" type="ColorRect" parent="Area2D/CollisionShape2D"]
-margin_left = -27.0
-margin_top = -9.2
-margin_right = 27.0
-margin_bottom = 9.3
-color = Color( 0, 0, 0, 1 )
+[node name="UiPanel" type="Sprite" parent="Area2D"]
+texture = ExtResource( 2 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

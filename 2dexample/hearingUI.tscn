@@ -1,24 +1,64 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://hearingChoice.gd" type="Script" id=1]
+[ext_resource path="res://ScreenCamera/ScreenCamera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://CustomButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Fonts/pixel_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Art/check panel.png" type="Texture" id=5]
 
 [node name="Level Node" type="Node2D"]
 z_index = 100
 script = ExtResource( 1 )
 
+[node name="overlay" type="ColorRect" parent="."]
+margin_left = -1427.0
+margin_top = -1036.0
+margin_right = 1561.0
+margin_bottom = 696.0
+color = Color( 0, 0, 0, 0.498039 )
+
 [node name="Label" type="Label" parent="."]
-margin_left = -130.0
-margin_top = -130.0
-margin_right = 279.0
-margin_bottom = -116.0
-text = "Please select the effect that you think sounds the most like rain"
+margin_left = -371.0
+margin_top = -226.0
+margin_right = 580.0
+margin_bottom = -84.0
+rect_scale = Vector2( 0.88, 0.88 )
+rect_pivot_offset = Vector2( -441, 30 )
+custom_fonts/font = ExtResource( 4 )
+text = "Initializing The Aural Sensation Of Rain.
+Select From Our Numerous Options Below.
+When You Have Selected The Accurate Sound Of Rain, 
+Click The Green Check"
+align = 1
 
 [node name="SelectableButton" parent="." instance=ExtResource( 3 )]
-position = Vector2( -136, -83 )
+position = Vector2( -257, -29 )
+scale = Vector2( -2.31412, -2.31412 )
 
-[node name="SelectableButton2" parent="." instance=ExtResource( 3 )]
-position = Vector2( -31, -84 )
-id = 1
+[node name="SelectableButton3" parent="." instance=ExtResource( 3 )]
+position = Vector2( -101, -29 )
+rotation = 3.14159
+scale = Vector2( 2.31412, 2.31412 )
 
 [node name="Audio_Stream_Player" type="AudioStreamPlayer" parent="."]
+
+[node name="ScreenCamera" parent="." instance=ExtResource( 2 )]
+
+[node name="SelectableButton4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 105, -29 )
+rotation = 3.14159
+scale = Vector2( 2.31412, 2.31412 )
+
+[node name="SelectableButton5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 281, -29 )
+rotation = 3.14159
+scale = Vector2( 2.31412, 2.31412 )
+
+[node name="SelectableButton2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -2, 113 )
+rotation = 3.14159
+scale = Vector2( 2.31412, 2.31412 )
+
+[node name="CheckPanel" type="Sprite" parent="SelectableButton2"]
+rotation = 3.14159
+texture = ExtResource( 5 )
