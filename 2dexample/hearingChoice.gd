@@ -40,6 +40,7 @@ func buttonClicked(num):
 		finished();
 
 func finished():
+	print("here")
 	if(lastSelected != null):
 		emit_signal("exitMemory",lastSelected);
 

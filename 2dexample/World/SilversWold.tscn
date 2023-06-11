@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://World/World.gd" type="Script" id=1]
 [ext_resource path="res://ScreenCamera/ScreenCamera.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://StateMachine.gd" type="Script" id=9]
 [ext_resource path="res://Art/gradient.png" type="Texture" id=10]
 [ext_resource path="res://VibratingUI.tscn" type="PackedScene" id=11]
+[ext_resource path="res://SeeingUI.tscn" type="PackedScene" id=12]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
@@ -26,6 +27,9 @@ jump_force = 1000.0
 
 [node name="Mouse" parent="StateMachine" instance=ExtResource( 8 )]
 position = Vector2( 1246, 63 )
+
+[node name="SeeingUI" parent="StateMachine" instance=ExtResource( 12 )]
+z_index = 1
 
 [node name="VibratingUI" parent="StateMachine" instance=ExtResource( 11 )]
 position = Vector2( -4978, 37 )
@@ -46,8 +50,7 @@ position = Vector2( -1256, -65 )
 position = Vector2( -1349, -65 )
 
 [node name="Vision" parent="." instance=ExtResource( 3 )]
-visible = false
-position = Vector2( -914, -65 )
+position = Vector2( -1165, -22 )
 
 [node name="Tilemaps" type="Node2D" parent="."]
 scale = Vector2( 20, 20 )
@@ -99,7 +102,9 @@ z_index = -5
 texture = ExtResource( 10 )
 offset = Vector2( 354.071, 11.9906 )
 
+[connection signal="colorChosen" from="StateMachine/SeeingUI" to="StateMachine" method="stop_seeing"]
 [connection signal="vibrateChosen" from="StateMachine/VibratingUI" to="StateMachine" method="stop_vibrating"]
 [connection signal="exitMemory" from="StateMachine/hearingUI" to="StateMachine" method="stop_hearing"]
 [connection signal="onClicked" from="Rumble" to="StateMachine" method="start_vibrating"]
 [connection signal="onClicked" from="Hearing" to="StateMachine" method="start_hearing"]
+[connection signal="onClicked" from="Vision" to="StateMachine" method="start_seeing"]

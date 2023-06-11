@@ -6,11 +6,8 @@ export var zoom:= Vector2(.5, .5)
 var enabled: bool = true;
 var xMultiplier: float;
 
-
 func _ready():
 	self.z_index = 1000
-	
-	enable();
 
 func get_input() -> Dictionary:
 	return {
@@ -26,7 +23,7 @@ func _process(_delta):
 	var size = get_viewport_rect().size;
 	
 	var center = get_viewport_center();
-	var deltaX = (get_viewport_rect().size.x/2)*zoom.y;
+	var deltaX = (get_viewport_rect().size.x/2)*zoom.x;
 	var deltaY = (get_viewport_rect().size.y/2)*zoom.y;
 	
 	self.position.x = clamp(self.position.x, center.x-deltaX, center.x+deltaX);
