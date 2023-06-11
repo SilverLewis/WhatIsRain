@@ -7,11 +7,13 @@ export var target : NodePath
 export var align_time : float = 0.2
 export var screen_size := Vector2(1920, 1080)
 
+export var bufferX:= Vector2(.2, .2)
+export var bufferY:= Vector2(.1, .34)
+
 export var move_screen_percentage : float = 30;
 
 
 onready var Target = get_node_or_null(target)
-onready var Twee = $Tween
 
 func _physics_process(_delta: float) -> void:
 	if not is_instance_valid(Target):
@@ -20,5 +22,26 @@ func _physics_process(_delta: float) -> void:
 	if not is_instance_valid(Target):
 		return
 	
-	self.global_position = Target.global_position
+	var center = get_viewport_center();
 	
+	var deltaX = (get_viewport_rect().size.x/2)*zoom.x;
+	var deltaY = (get_viewport_rect().size.y/2)*zoom.y;
+	
+	var xB = Vector2(center.x-deltaX*bufferX.x,center.x+deltaX*bufferX.y)
+	var yB = Vector2(center.y-deltaY*bufferY.x, center.y+deltaY*bufferY.y)
+	
+	if(Target.global_position.x>xB.y):
+		self.global_position.x+= Target.global_position.x-xB.y;
+	if(Target.global_position.x<xB.x):
+		self.global_position.x+= Target.global_position.x-xB.x;
+	if(Target.global_position.y>yB.y):
+		self.global_position.y+= Target.global_position.y-yB.y;
+	if(Target.global_position.y<yB.x):
+		self.global_position.y+= Target.global_position.y-yB.x;
+		
+	
+
+func get_viewport_center() -> Vector2:
+	var transform : Transform2D = get_viewport_transform()
+	var scale : Vector2 = transform.get_scale()
+	return -transform.origin / scale + get_viewport_rect().size / scale / 2
