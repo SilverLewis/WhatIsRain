@@ -38,7 +38,7 @@ var jump_coyote_timer : float = 0
 var jump_buffer_timer : float = 0
 var is_jumping := false
 # ----------------------------------- #
-
+onready var animator= get_node("AnimatedSprite")
 
 # All iputs we want to keep track of
 func get_input() -> Dictionary:
@@ -78,10 +78,14 @@ func x_movement(delta: float) -> void:
 	# Stop if we're not doing movement inputs.
 	if x_dir == 0: 
 		velocity.x = Vector2(velocity.x, 0).move_toward(Vector2(0,0), deceleration * delta).x
+		if(!is_jumping and animator.animation!="idle"):
+			animator.animation="idle"
 		return
 	
 	# If we are doing movement inputs and above max speed, don't accelerate nor decelerate
 	# Except if we are turning
+	if(!is_jumping and animator.animation!="walk"):
+			animator.animation="walk"
 	# (This keeps our momentum gained from outside or slopes)
 	if abs(velocity.x) >= max_speed and sign(velocity.x) == x_dir:
 		return
@@ -104,6 +108,7 @@ func set_direction(hor_direction) -> void:
 		return
 	apply_scale(Vector2(hor_direction * face_direction, 1)) # flip
 	face_direction = hor_direction # remember direction
+	animator.apply_scale(Vector2(hor_direction * face_direction, 1)) # flip
 
 
 func jump_logic(_delta: float) -> void:
@@ -124,6 +129,7 @@ func jump_logic(_delta: float) -> void:
 			velocity.y -= velocity.y
 		
 		velocity.y = -jump_force
+		animator.animation="rise"
 	
 	# We're not actually interested in checking if the player is holding the jump button
 #	if get_input()["jump"]:pass
@@ -160,6 +166,9 @@ func apply_gravity(delta: float) -> void:
 		applied_gravity *= jump_hang_gravity_mult
 	
 	velocity.y += applied_gravity
+	if(velocity.y>0):
+		if(animator.animation!="fall"):
+			animator.animation="fall"
 
 
 func timers(delta: float) -> void:
