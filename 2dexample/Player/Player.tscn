@@ -1,10 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Sprite.gd" type="Script" id=2]
 [ext_resource path="res://Art/character/player.tres" type="SpriteFrames" id=3]
-[ext_resource path="res://otheraudio/step_sand.ogg" type="AudioStream" id=4]
-[ext_resource path="res://otheraudio/step_metal.ogg" type="AudioStream" id=5]
 [ext_resource path="res://otheraudio/step_tile.ogg" type="AudioStream" id=6]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -96,14 +94,7 @@ position = Vector2( -3.57628e-07, -21.3333 )
 scale = Vector2( 2, 2.33333 )
 frames = ExtResource( 3 )
 animation = "fall"
-frame = 1
 playing = true
 
-[node name="TileStep" type="AudioStreamPlayer" parent="."]
+[node name="steps" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-
-[node name="SandStep" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-
-[node name="MetalStep" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )

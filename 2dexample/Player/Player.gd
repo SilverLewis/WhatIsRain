@@ -6,12 +6,15 @@ extends KinematicBody2D
 # Beyond coyote time and a jump buffer I go through all the things listed in the following video:
 # https://www.youtube.com/watch?v=2S3g8CgBG1g
 # Except for separate air and ground acceleration, as I don't think it's necessary.
-var tilemap1
-var tilemap2
+var tileMaps = [];
 
-onready var tileAudio=get_node("TileStep")
-onready var metalAudio=get_node("MetalStep")
-onready var sandAudio=get_node("SandStep")
+var sandStepSound = preload("../otheraudio/step_sand.ogg")
+var metalStepSound = preload("../otheraudio/step_metal.ogg")
+var tileStepSound = preload("../otheraudio/step_tile.ogg") 
+
+var curSound: AudioStream;
+
+onready var stepAudioPlayer:AudioStreamPlayer=get_node("steps")
 export var stepFreq: float = 0.5
 var stepTimer: float = 0;
 # BASIC MOVEMENT VARAIABLES ---------------- #
@@ -48,6 +51,11 @@ var is_jumping := false
 # ----------------------------------- #
 onready var animator= get_node("AnimatedSprite")
 
+func _ready():
+	tileMaps.append(get_node("../Tilemaps/foreground1"))
+	tileMaps.append(get_node("../Tilemaps/foreground2"))
+	tileMaps.append(get_node( "../Tilemaps/foregroundclouds"))
+
 # All iputs we want to keep track of
 func get_input() -> Dictionary:
 	return {
@@ -64,8 +72,17 @@ func _physics_process(delta: float) -> void:
 	jump_logic(delta)
 	apply_gravity(delta)
 	
+	if(velocity.x!=0&&is_on_floor()):
+		print("spam")
+		if(!stepAudioPlayer.is_playing ()):
+			print("walking on floor")
+			stepAudioPlayer.play()
+			stepAudioPlayer.pitch_scale = rand_range(.9,1.1)
+			
 	timers(delta)
 	apply_velocity()
+	
+	
 
 
 func apply_velocity() -> void:
@@ -101,6 +118,7 @@ func x_movement(delta: float) -> void:
 	
 	# Accelerate
 	velocity.x += x_dir * accel_rate * delta
+
 	
 	set_direction(x_dir) # This is purely for visuals
 
@@ -122,9 +140,6 @@ func jump_logic(_delta: float) -> void:
 	# Reset our jump requirements
 	if is_on_floor() && velocity.y==0:
 		jump_coyote_timer = jump_coyote
-		if(is_jumping):
-			sandAudio.pitch_scale=rand_range(0.8,1.2)
-			sandAudio.play();
 		is_jumping = false
 	if get_input()["just_jump"]:
 		jump_buffer_timer = jump_buffer
@@ -193,12 +208,32 @@ func timers(delta: float) -> void:
 	# This way everything is contained in just 1 script with no node requirements
 	jump_coyote_timer -= delta
 	jump_buffer_timer -= delta
-	if(is_on_floor() and animator.animation=="walk"):
-		stepTimer += delta
-		if(stepTimer > stepFreq ):
-			stepTimer=0.0
+	
+	var sound: AudioStream;
+	
+	for temp in tileMaps:
+		var tileMap = temp as TileMap
+		var tilePosition = tileMap.world_to_map(tileMap.to_local(position))+ Vector2(0,1);
+		var tileId = tileMap.get_cellv(tilePosition);
+		
+		if(tileId !=-1):
+			var tn = tileMap.tile_set.tile_get_name(tileId)
 			
-			sandAudio.pitch_scale=rand_range(0.8,1.2)
-			sandAudio.play();
+			if(tn == "tilemap.png 1" ||tn == "tilemap.png 2"||tn == "tilemap.png 0"||tn == "tilemap.png 3" ||tn == "tilemap.png 4"||tn == "tilemap.png 5"):
+				sound = sandStepSound;
+			elif(tn == "tilemap.png 80"||tn == "tilemap.png 21"||tn == "tilemap.png 22"||
+				tn == "tilemap.png 23"||tn == "tilemap.png 50"||tn == "tilemap.png 51"||
+				tn == "tilemap.png 52"||tn == "tilemap.png 37"||tn == "tilemap.png 38"||
+				tn == "tilemap.png 46"||tn == "tilemap.png 47"||tn == "tilemap.png 48"||
+				tn == "tilemap.png 39"||tn == "tilemap.png 40"||tn == "tilemap.png 79"):
+				sound = metalStepSound;
+			elif(tn == "tilemap.png 10" ||tn == "tilemap.png 63" ||tn == "tilemap.png 62"||tn == "tilemap.png 64"||tn == "tilemap.png 65"):
+				sound = tileStepSound;
+			elif(tn):
+				print("Unknown tile: ",tn)
 				
-
+	if(sound&&curSound!=sound):
+		print(sound)
+		curSound = sound
+		stepAudioPlayer.stop()
+		stepAudioPlayer.stream = sound
