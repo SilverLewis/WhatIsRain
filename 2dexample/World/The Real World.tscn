@@ -12,6 +12,7 @@
 script = ExtResource( 1 )
 
 [node name="Taste" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2728, -648 )
 
 [node name="Smell" parent="." instance=ExtResource( 3 )]
 
