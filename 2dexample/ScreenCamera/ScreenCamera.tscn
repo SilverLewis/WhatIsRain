@@ -25,6 +25,7 @@ atlas = ExtResource( 2 )
 region = Rect2( 155, 86.1252, 24.2439, 21.3451 )
 
 [node name="ScreenCamera" type="Camera2D"]
+current = true
 script = ExtResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]

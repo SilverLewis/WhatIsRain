@@ -15,8 +15,8 @@
 [ext_resource path="res://hearingUI.tscn" type="PackedScene" id=13]
 [ext_resource path="res://SeeingUI.tscn" type="PackedScene" id=14]
 [ext_resource path="res://StateMachine.gd" type="Script" id=15]
-[ext_resource path="res://SniffingUI.tscn" type="PackedScene" id=16]
-[ext_resource path="res://drinkingUI.tscn" type="PackedScene" id=17]
+[ext_resource path="res://SniffingUI.tscn" type="PackedScene" id=18]
+[ext_resource path="res://drinkingUI.tscn" type="PackedScene" id=19]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
@@ -38,10 +38,10 @@ position = Vector2( -4978, 37 )
 visible = false
 position = Vector2( -47, 118 )
 
-[node name="DrinkingUI" parent="StateMachine" instance=ExtResource( 17 )]
+[node name="DrinkingUI" parent="StateMachine" instance=ExtResource( 19 )]
 visible = false
 
-[node name="sniffingUI" parent="StateMachine" instance=ExtResource( 16 )]
+[node name="sniffingUI" parent="StateMachine" instance=ExtResource( 18 )]
 visible = false
 
 [node name="Braindoor" type="Sprite" parent="."]
