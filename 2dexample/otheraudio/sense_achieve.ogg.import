@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sense_achieve.ogg-f03396e5b59934dab8b39ec8042b8272.oggstr"
+
+[deps]
+
+source_file="res://otheraudio/sense_achieve.ogg"
+dest_files=[ "res://.import/sense_achieve.ogg-f03396e5b59934dab8b39ec8042b8272.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
