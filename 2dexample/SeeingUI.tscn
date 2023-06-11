@@ -1,20 +1,39 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://Art/UI Panel.png" type="Texture" id=1]
 [ext_resource path="res://SeeingUI.gd" type="Script" id=2]
+[ext_resource path="res://Fonts/pixel_font.tres" type="DynamicFont" id=4]
 
 [node name="SeeingUI" type="Node2D"]
 z_index = 100
 script = ExtResource( 2 )
 
+[node name="overlay" type="ColorRect" parent="."]
+margin_left = -1427.0
+margin_top = -1036.0
+margin_right = 1561.0
+margin_bottom = 696.0
+color = Color( 0, 0, 0, 0.498039 )
+
+[node name="UiPanel" type="Sprite" parent="."]
+position = Vector2( 2.10756, 10.1076 )
+scale = Vector2( -5.00448, -5.00448 )
+texture = ExtResource( 1 )
+
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -214.0
-margin_top = -120.0
-margin_right = 211.0
-margin_bottom = 158.0
+margin_left = -97.7223
+margin_top = -89.7223
+margin_right = 101.278
+margin_bottom = 106.278
 
 [node name="Label" type="Label" parent="."]
-margin_left = -120.0
+margin_left = -430.0
 margin_top = -219.0
-margin_right = 111.0
-margin_bottom = -205.0
-text = "Press A at the color you think rain is"
+margin_right = 548.0
+margin_bottom = -108.0
+rect_scale = Vector2( 0.880187, 0.921065 )
+custom_fonts/font = ExtResource( 4 )
+text = "Initializing The Visual Sensation Of Rain.
+Please Calibrate The Colour Of Rain Using Your Cursor. 
+Press Confirm When The Panel Below Is The Actual Colour Of Rain. "
+align = 1

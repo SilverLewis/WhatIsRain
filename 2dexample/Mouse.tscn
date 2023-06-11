@@ -8,7 +8,9 @@
 [sub_resource type="CircleShape2D" id=1]
 
 [node name="Mouse" type="Node2D"]
+scale = Vector2( 5, 5 )
 script = ExtResource( 1 )
+maxSpeed = 2.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
