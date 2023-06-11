@@ -859,3 +859,5 @@ position = Vector2( 2604, -307 )
 [connection signal="onClicked" from="Rumble" to="StateMachine" method="start_vibrating"]
 [connection signal="onClicked" from="Hearing" to="StateMachine" method="start_hearing"]
 [connection signal="onClicked" from="Vision" to="StateMachine" method="start_seeing"]
+[connection signal="body_entered" from="Rumble Collision/Area2D" to="StateMachine" method="inRumbleLand"]
+[connection signal="body_exited" from="Rumble Collision/Area2D" to="StateMachine" method="exitedRumbleLand"]

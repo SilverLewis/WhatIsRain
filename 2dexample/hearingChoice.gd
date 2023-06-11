@@ -54,7 +54,7 @@ func buttonClicked(num):
 func finished():
 	print("here")
 	if(lastSelected != -1):
-		emit_signal("exitMemory",sounds[lastSelected]);
+		emit_signal("exitMemory",sounds[lastSelected].resource_path);
 		hearing =false
 
 func test():
