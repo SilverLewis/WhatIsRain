@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ScreenCamera/ScreenCamera.gd" type="Script" id=1]
 [ext_resource path="res://Art/hud elements.png" type="Texture" id=2]
@@ -7,6 +7,10 @@
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
 region = Rect2( 6.46872, 85.188, 37.9873, 23.6137 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 6.1998, 2.15172, 31.5125, 31.5125 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
@@ -23,6 +27,10 @@ region = Rect2( 116.805, 68.7747, 33.8203, 38.9165 )
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 2 )
 region = Rect2( 155, 86.1252, 24.2439, 21.3451 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 78.9055, -2.50616, 33.3672, 33.8806 )
 
 [node name="ScreenCamera" type="Camera2D"]
 current = true
@@ -41,11 +49,21 @@ scale = Vector2( 5, 5 )
 z_index = 50
 texture = SubResource( 1 )
 
+[node name="X" type="Sprite" parent="eyeball"]
+visible = false
+z_index = 50
+texture = SubResource( 7 )
+
 [node name="ear" type="Sprite" parent="."]
 position = Vector2( -161, 211 )
 scale = Vector2( 5, 5 )
 z_index = 50
 texture = SubResource( 2 )
+
+[node name="X" type="Sprite" parent="ear"]
+visible = false
+z_index = 50
+texture = SubResource( 7 )
 
 [node name="hand" type="Sprite" parent="."]
 position = Vector2( 2, 210 )
@@ -53,14 +71,43 @@ scale = Vector2( 5, 5 )
 z_index = 50
 texture = SubResource( 3 )
 
+[node name="X" type="Sprite" parent="hand"]
+visible = false
+z_index = 50
+texture = SubResource( 7 )
+
 [node name="nose" type="Sprite" parent="."]
 position = Vector2( 186, 173 )
 scale = Vector2( 5, 5 )
 z_index = 50
 texture = SubResource( 4 )
 
+[node name="X" type="Sprite" parent="nose"]
+visible = false
+z_index = 50
+texture = SubResource( 7 )
+
 [node name="tongue" type="Sprite" parent="."]
 position = Vector2( 347, 217 )
 scale = Vector2( 5, 5 )
 z_index = 50
 texture = SubResource( 5 )
+
+[node name="X" type="Sprite" parent="tongue"]
+visible = false
+z_index = 50
+texture = SubResource( 7 )
+
+[node name="brain" type="Sprite" parent="."]
+visible = false
+position = Vector2( 3, -215 )
+scale = Vector2( 3.72727, 3.48485 )
+z_index = 50
+texture = SubResource( 6 )
+
+[node name="X" type="Sprite" parent="brain"]
+visible = false
+position = Vector2( -0.05193, -1.20337 )
+scale = Vector2( 1.23761, 1.3237 )
+z_index = 50
+texture = SubResource( 7 )
