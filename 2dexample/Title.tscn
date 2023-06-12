@@ -13,6 +13,7 @@
 [node name="IntroUI" type="Node2D"]
 z_index = 100
 script = ExtResource( 1 )
+scene = "res://IntroUI.tscn"
 
 [node name="overlay" type="ColorRect" parent="."]
 margin_left = -1427.0
