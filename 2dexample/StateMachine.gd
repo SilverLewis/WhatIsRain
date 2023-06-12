@@ -167,8 +167,9 @@ func stop_smelling():
 	exitRainShrine();
 
 func start_ending(_id):
-	enableRainShrine("EndGameUI",true)
-	get_node("EndGameUI").start()
+	if(hasFiveSenses()):
+		enableRainShrine("EndGameUI",true)
+		get_node("EndGameUI").start()
 	
 func stop_ending():
 	OS.shell_open(rainURL);
