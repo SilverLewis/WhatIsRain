@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://introUI.gd" type="Script" id=1]
 [ext_resource path="res://ScreenCamera/ScreenCamera.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Mouse.tscn" type="PackedScene" id=9]
 [ext_resource path="res://otheraudio/windloop.ogg" type="AudioStream" id=10]
 [ext_resource path="res://Art/titlescreen.png" type="Texture" id=11]
+[ext_resource path="res://World/World.gd" type="Script" id=12]
 
 [node name="IntroUI" type="Node2D"]
 z_index = 100
@@ -20,6 +21,7 @@ script = ExtResource( 1 )
 position = Vector2( -0.500002, -6.67572e-06 )
 scale = Vector2( 5.00521, 5.01852 )
 texture = ExtResource( 11 )
+script = ExtResource( 12 )
 
 [node name="overlay" type="ColorRect" parent="."]
 margin_left = -1428.0
@@ -76,6 +78,7 @@ autowrap = true
 position = Vector2( 357, 113 )
 rotation = 3.14159
 scale = Vector2( 2.31412, 2.31412 )
+spritePath = NodePath("CheckPanel")
 
 [node name="CheckPanel" type="Sprite" parent="SelectableButton2"]
 rotation = 3.14159

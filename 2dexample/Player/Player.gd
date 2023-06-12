@@ -52,9 +52,9 @@ var is_jumping := false
 onready var animator= get_node("AnimatedSprite")
 
 func _ready():
+	tileMaps.append(get_node( "../Tilemaps/foregroundclouds"))
 	tileMaps.append(get_node("../Tilemaps/foreground1"))
 	tileMaps.append(get_node("../Tilemaps/foreground2"))
-	tileMaps.append(get_node( "../Tilemaps/foregroundclouds"))
 
 # All iputs we want to keep track of
 func get_input() -> Dictionary:

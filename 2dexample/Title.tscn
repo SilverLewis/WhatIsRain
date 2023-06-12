@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://introUI.gd" type="Script" id=1]
 [ext_resource path="res://Art/begin.png" type="Texture" id=2]
 [ext_resource path="res://otheraudio/music_iguess.ogg" type="AudioStream" id=3]
+[ext_resource path="res://World/World.gd" type="Script" id=4]
 [ext_resource path="res://CustomButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Mouse.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Art/titlescreen.png" type="Texture" id=10]
@@ -16,11 +17,13 @@ scene = "res://IntroUI.tscn"
 position = Vector2( -0.500002, -6.67572e-06 )
 scale = Vector2( 5.00521, 5.01852 )
 texture = ExtResource( 10 )
+script = ExtResource( 4 )
 
 [node name="SelectableButton2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 6, 216 )
 rotation = 3.14159
 scale = Vector2( 2.31412, 2.31412 )
+spritePath = NodePath(".")
 
 [node name="CheckPanel" type="Sprite" parent="SelectableButton2"]
 rotation = 3.14159

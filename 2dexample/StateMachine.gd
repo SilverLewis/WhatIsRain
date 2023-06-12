@@ -4,7 +4,7 @@ extends Node2D
 # var a = 2
 # var b = "text"
 export var rumbleRandomInterval = Vector2(.5,3)
-export var rainURL:String = "https://www.youtube.com/watch?v=42M3esYyHdw&ab_channel=TheRelaxedGuy"
+export var rainURL:String = "https://www.youtube.com/live_chat?is_popout=1&v=DLxmMreAelQ"
 
 onready var mouse = get_node("Mouse")
 var curEnabledShrine: String

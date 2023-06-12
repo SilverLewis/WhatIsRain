@@ -10,6 +10,7 @@ extents = Vector2( 34.75, 60.75 )
 [node name="Door" type="Node2D"]
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
+spritePath = NodePath("Braindoor")
 
 [node name="Braindoor" type="Sprite" parent="."]
 position = Vector2( 0, -0.5 )
@@ -29,5 +30,10 @@ collision_mask = 15
 position = Vector2( 0.25, -1.25 )
 shape = SubResource( 1 )
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="delayedSend"]

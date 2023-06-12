@@ -76,6 +76,7 @@ texture = ExtResource( 6 )
 position = Vector2( -2, 113 )
 rotation = 3.14159
 scale = Vector2( 2.31412, 2.31412 )
+spritePath = NodePath("CheckPanel")
 
 [node name="CheckPanel" type="Sprite" parent="SelectableButton2"]
 rotation = 3.14159
