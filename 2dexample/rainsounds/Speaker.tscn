@@ -5,6 +5,7 @@
 [node name="Speaker" type="AudioStreamPlayer2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0.678431, 0.0352941, 0.560784, 0.298039 )
 scale = Vector2( 0.0929052, 0.0929052 )
 z_index = 229
