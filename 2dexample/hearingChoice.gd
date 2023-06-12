@@ -1,6 +1,10 @@
 extends Node2D
 
 var CustomButton = preload('onButton.gd')
+var rain1 = preload('rainsounds/rain1.ogg')
+var rain2 = preload('rainsounds/rain2.ogg')
+var rain3 = preload('rainsounds/rain3.ogg')
+var rain4 = preload('rainsounds/rain4.ogg')
 var hearing:bool = false;
 var audio_node = null
 var lastSelected =-1;
@@ -19,11 +23,11 @@ func _ready():
 	sound_directory .open("res://rainsounds")
 	sound_directory.list_dir_begin(true)
 
-	var sound = sound_directory.get_next()
-	while sound != "":
-		if(sound.ends_with(".ogg")&&!sound.ends_with("import")):
-			sounds.append(load("res://rainsounds/" + sound))
-		sound = sound_directory.get_next()
+	sounds.append(rain1)
+	sounds.append(rain2)
+	sounds.append(rain3)
+	sounds.append(rain4)
+
 	
 	var ids = 0
 	for child in get_children():
