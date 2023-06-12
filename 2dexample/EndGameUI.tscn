@@ -15,7 +15,7 @@ margin_left = -1427.0
 margin_top = -1036.0
 margin_right = 1561.0
 margin_bottom = 696.0
-color = Color( 0, 0, 0, 0.498039 )
+color = Color( 0, 0, 0, 0.713726 )
 
 [node name="UiPanel" type="Sprite" parent="."]
 position = Vector2( 6, -4 )
