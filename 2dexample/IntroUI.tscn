@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://textUI.gd" type="Script" id=1]
+[ext_resource path="res://ScreenCamera/ScreenCamera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Art/check panel.png" type="Texture" id=3]
+[ext_resource path="res://Fonts/pixel_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://CustomButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Art/UI Panel.png" type="Texture" id=6]
+[ext_resource path="res://Art/keyboard controls.png" type="Texture" id=7]
+[ext_resource path="res://Art/controller controls.png" type="Texture" id=8]
+
+[node name="sniffingUI" type="Node2D"]
+z_index = 100
+script = ExtResource( 1 )
+
+[node name="overlay" type="ColorRect" parent="."]
+margin_left = -1427.0
+margin_top = -1036.0
+margin_right = 1561.0
+margin_bottom = 696.0
+color = Color( 0, 0, 0, 0.498039 )
+
+[node name="UiPanel" type="Sprite" parent="."]
+position = Vector2( 8.50002, -21.9 )
+scale = Vector2( 9.02083, 5.45417 )
+texture = ExtResource( 6 )
+
+[node name="ScreenCamera" parent="." instance=ExtResource( 2 )]
+
+[node name="label" type="Label" parent="."]
+margin_left = -299.0
+margin_top = -224.0
+margin_right = 366.0
+margin_bottom = 39.0
+rect_scale = Vector2( 0.88, 0.88 )
+custom_fonts/font = ExtResource( 4 )
+text = "Welcome To The Monument To The Memory Of Rain!"
+align = 1
+autowrap = true
+
+[node name="ControllerControls" type="Sprite" parent="."]
+position = Vector2( 340, -50 )
+rotation = 0.177908
+scale = Vector2( 1.64953, 1.64953 )
+texture = ExtResource( 8 )
+
+[node name="KeyboardControls" type="Sprite" parent="."]
+position = Vector2( -321, -1 )
+rotation = 0.177908
+scale = Vector2( 1.64953, 1.64953 )
+texture = ExtResource( 7 )
+
+[node name="label2" type="Label" parent="."]
+margin_left = -185.0
+margin_top = -134.0
+margin_right = 454.0
+margin_bottom = 281.0
+rect_scale = Vector2( 0.592858, 0.592858 )
+custom_colors/font_color = Color( 0.34902, 0.109804, 0.109804, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "Long ago, Earth's atmosphere was capable of facilitating a Water Cycle. Water would evaporate, collect in the atmosphere as clouds, and then pour back to the ground as rain! Nobody alive today has seen it in person, but here you can have the next best thing! Enjoy exploring the park and be sure to engage all 5 senses in our thrilling, personalized, and accurate experience of rain!"
+align = 1
+autowrap = true
+
+[node name="SelectableButton2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 357, 113 )
+rotation = 3.14159
+scale = Vector2( 2.31412, 2.31412 )
+
+[node name="CheckPanel" type="Sprite" parent="SelectableButton2"]
+rotation = 3.14159
+texture = ExtResource( 3 )
+
+[connection signal="onClicked" from="SelectableButton2" to="." method="done"]
