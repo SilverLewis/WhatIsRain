@@ -86,7 +86,7 @@ position = Vector2( -2502, -855 )
 position = Vector2( -1441, 704 )
 
 [node name="Hearing" parent="." instance=ExtResource( 3 )]
-position = Vector2( -240, 1184 )
+position = Vector2( -232, 1185 )
 id = 1
 
 [node name="Vision" parent="." instance=ExtResource( 3 )]
@@ -827,33 +827,43 @@ position = Vector2( 21, 49 )
 
 [node name="Speaker" parent="Speakers" instance=ExtResource( 16 )]
 position = Vector2( -324, -197 )
+max_distance = 600.0
 
 [node name="Speaker2" parent="Speakers" instance=ExtResource( 16 )]
 position = Vector2( 39, -222 )
+max_distance = 600.0
 
 [node name="Speaker3" parent="Speakers" instance=ExtResource( 16 )]
 position = Vector2( 239, -263 )
+max_distance = 600.0
 
 [node name="Speaker4" parent="Speakers" instance=ExtResource( 16 )]
 position = Vector2( 560, -276 )
+max_distance = 600.0
 
 [node name="Speaker5" parent="Speakers" instance=ExtResource( 16 )]
 position = Vector2( 683, 692 )
+max_distance = 600.0
 
 [node name="Speaker6" parent="Speakers" instance=ExtResource( 16 )]
 position = Vector2( 1018, -145 )
+max_distance = 600.0
 
 [node name="Speaker7" parent="Speakers" instance=ExtResource( 16 )]
 position = Vector2( 1322, -115 )
+max_distance = 600.0
 
 [node name="Speaker8" parent="Speakers" instance=ExtResource( 16 )]
 position = Vector2( 1635, -89 )
+max_distance = 600.0
 
 [node name="Speaker9" parent="Speakers" instance=ExtResource( 16 )]
 position = Vector2( 2196, -333 )
+max_distance = 600.0
 
 [node name="Speaker10" parent="Speakers" instance=ExtResource( 16 )]
 position = Vector2( 2604, -307 )
+max_distance = 600.0
 
 [node name="Desert" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )

@@ -1,6 +1,5 @@
 extends Node2D
 
-var buttonList = [];
 var CustomButton = preload('onButton.gd')
 var hearing:bool = false;
 var audio_node = null
@@ -22,7 +21,7 @@ func _ready():
 
 	var sound = sound_directory.get_next()
 	while sound != "":
-		if(!sound.ends_with("import")):
+		if(sound.ends_with(".ogg")&&!sound.ends_with("import")):
 			sounds.append(load("res://rainsounds/" + sound))
 		sound = sound_directory.get_next()
 	
@@ -34,6 +33,7 @@ func _ready():
 			ids+=1
 		
 func buttonClicked(num):
+	print("here: ", num, " ", sounds.size())
 	if(!hearing):
 		return;
 	#reset highlighting
@@ -54,6 +54,7 @@ func buttonClicked(num):
 func finished():
 	print("here")
 	if(lastSelected != -1):
+		audio_node.stop()
 		emit_signal("exitMemory",sounds[lastSelected].resource_path);
 		hearing =false
 
