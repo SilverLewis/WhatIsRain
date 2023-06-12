@@ -2,6 +2,9 @@ extends Node2D
 
 signal onClicked;
 export var showClicked: bool =true;
+
+onready var node=get_node("Area2D/UiPanel")
+
 var entered: bool  = false;
 var sent:bool = false
 export var id: int = 0;
@@ -18,7 +21,6 @@ func _on_Area2D_body_exited(body):
 		sent = false
 	
 func _process(_delta):
-	var node = get_node("Area2D/UiPanel")
 	if(Input.is_action_just_pressed("ui_accept") && entered):
 		print("clicked")
 		if(node&&showClicked):

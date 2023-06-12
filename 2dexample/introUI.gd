@@ -1,7 +1,5 @@
 extends Node2D
 
-signal theyAreBack;
-
 export var scene: String = "res://World/TheRealWorld.tscn"
 
 var active: bool = false;

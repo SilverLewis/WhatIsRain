@@ -20,8 +20,6 @@ func _process(_delta):
 	var vel = Vector2 (get_input()["x"]*xMultiplier, get_input()["y"])
 	self.position += vel.normalized() * maxSpeed;
 
-	var size = get_viewport_rect().size;
-	
 	var center = get_viewport_center();
 	var deltaX = (get_viewport_rect().size.x/2)*zoom.x;
 	var deltaY = (get_viewport_rect().size.y/2)*zoom.y;
