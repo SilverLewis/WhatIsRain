@@ -73,12 +73,9 @@ func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
 	
 	if(velocity.x!=0&&is_on_floor()):
-		print("spam")
 		if(!stepAudioPlayer.is_playing ()):
-			print("walking on floor")
 			stepAudioPlayer.play()
 			stepAudioPlayer.pitch_scale = rand_range(.9,1.1)
-			
 	timers(delta)
 	apply_velocity()
 	

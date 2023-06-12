@@ -8,7 +8,7 @@ func start():
 	active = true;
 	print("active")
 
-func done(id):
+func done(_id):
 	print("here")
 	if(active):
 		print("done")
