@@ -176,7 +176,7 @@ func apply_gravity(delta: float) -> void:
 	# No gravity if we are grounded
 	if jump_coyote_timer > 0:
 		return
-	
+	print("applied gravity")
 	# Normal gravity limit
 	if velocity.y <= gravity_max:
 		applied_gravity = gravity_acceleration * delta
@@ -190,9 +190,10 @@ func apply_gravity(delta: float) -> void:
 		applied_gravity *= jump_hang_gravity_mult
 	
 	velocity.y += applied_gravity
-	if(velocity.y>0.1):
+	if(velocity.y>100):
 		if(animator.animation!="fall"):
 			animator.animation="fall"
+			print(velocity.y)
 
 func disable():
 	velocity = Vector2(0,0)
