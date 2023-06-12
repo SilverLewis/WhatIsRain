@@ -98,6 +98,8 @@ func x_movement(delta: float) -> void:
 	if x_dir == 0: 
 		velocity.x = Vector2(velocity.x, 0).move_toward(Vector2(0,0), deceleration * delta).x
 		if(!is_jumping and velocity.y==0 and animator.animation!="idle"):
+			if(animator.animation=="fall"):
+				stepAudioPlayer.play()
 			animator.animation="idle"
 		return
 	

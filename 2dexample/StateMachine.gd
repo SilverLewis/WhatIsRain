@@ -41,8 +41,8 @@ func _process(delta):
 	if(timeLeft>0):
 		timeLeft -= delta
 	elif(inRumble&&vibrateStrengthChosen):
-		timeLeft = .5+rand_range(rumbleRandomInterval.x,rumbleRandomInterval.y)
-		Input.start_joy_vibration(0, vibrateStrengthChosen.x, vibrateStrengthChosen.y, .5)
+		timeLeft =.5+ rand_range(rumbleRandomInterval.x,rumbleRandomInterval.y)
+		Input.start_joy_vibration(0, vibrateStrengthChosen.x+ rand_range(-1,1), vibrateStrengthChosen.y+ rand_range(-1,1), rand_range(.5,.7))
 
 func enableRainShrine(name, requiresMouse):
 	print("Entering memory: ",name)
@@ -86,6 +86,7 @@ func start_hearing(_id):
 	print("starting to hear")
 	enableRainShrine("hearingUI",true)
 	get_node("hearingUI").start()
+	startNoise.play()
 	
 func stop_hearing(chosen : String):
 	rainSoundChosen=load(chosen);

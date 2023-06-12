@@ -29,8 +29,8 @@ margin_right = 366.0
 margin_bottom = 39.0
 rect_scale = Vector2( 0.88, 0.88 )
 custom_fonts/font = ExtResource( 4 )
-text = "In Order To Experience The Smell Of Rain, Follow These Instructions Carefully:
-"
+text = "Now, You Have Experienced Rain
+To The Utmost, By The Measure Of Our Time"
 align = 1
 autowrap = true
 
@@ -42,14 +42,21 @@ margin_bottom = 281.0
 rect_scale = Vector2( 0.592858, 0.592858 )
 custom_colors/font_color = Color( 0.34902, 0.109804, 0.109804, 1 )
 custom_fonts/font = ExtResource( 4 )
-text = "
-Procure a small amount of soil from a local greenhouse and place it in a bowl. Then gently pour a small amount of water over top. Waft the air above the bowl towards your face, and breathe in deeply.
-When you have smelled the true scent of rain, click the green check."
+text = "With your senses satisfied,
+you may now wish to share
+this experience with another.
+
+Fortunately we can provide
+a link to a chatroom full of people who have experienced
+all 5 sensations of rain.
+Click The Green Check
+To Be Transported.
+Thanks for coming! "
 align = 1
 autowrap = true
 
 [node name="SelectableButton2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 357, 113 )
+position = Vector2( 245, 5 )
 rotation = 3.14159
 scale = Vector2( 2.31412, 2.31412 )
 
