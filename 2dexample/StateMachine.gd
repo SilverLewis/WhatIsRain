@@ -134,6 +134,7 @@ func stop_seeing(chosen):
 		endNoise.play()
 		activateEndDoor()
 	exitRainShrine();
+	particalHolder.visible=true
 
 func start_drinking(_id):
 	print("starting to drink")
