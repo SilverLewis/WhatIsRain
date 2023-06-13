@@ -5,7 +5,7 @@ extends Camera2D
 
 export var target : NodePath
 export var align_time : float = 0.2
-export var screen_size := Vector2(1920, 1080)
+onready var screen_size = Vector2(ProjectSettings.get_setting("display/window/size/width"),ProjectSettings.get_setting("display/window/size/height"))
 
 export var bufferX:= Vector2(.2, .2)
 export var bufferY:= Vector2(.1, .34)
